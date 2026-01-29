@@ -1,0 +1,62 @@
+:root {
+  /* Colors */
+  --background: #F5F5F7;
+  --surface: #FFFFFF;
+  --foreground: #111111;
+  --border: #E0E0E0;
+  --primary: #000000;
+  --primary-foreground: #FFFFFF;
+  --secondary: #E5E5E5;
+  --secondary-foreground: #111111;
+  --accent: #0055FF;
+  --accent-foreground: #FFFFFF;
+  --danger: #D32F2F;
+  --success: #2E7D32;
+  --warning: #ED6C02;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utilities */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* High Contrast Focus States */
+:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}

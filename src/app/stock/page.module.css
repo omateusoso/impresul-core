@@ -1,0 +1,198 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerTitle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.headerTitle h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.badge {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 0.25rem 0.6rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.searchBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 10px;
+    color: #888;
+}
+
+.searchInput {
+    padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+    width: 240px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.stockCard {
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+}
+
+.stockCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.lowStock {
+    border-color: #fca5a5;
+    background-color: #fef2f2;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.iconWrapper {
+    padding: 0.5rem;
+    background-color: #f3f4f6;
+    border-radius: 6px;
+    color: #4b5563;
+}
+
+.lowStock .iconWrapper {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.cardTitle h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.cardTitle span {
+    font-size: 0.75rem;
+    color: #666;
+    font-family: var(--font-mono);
+}
+
+.alertIcon {
+    margin-left: auto;
+    color: #dc2626;
+    animation: pulse 2s infinite;
+}
+
+.stockDisplay {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.values {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.current {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.current small {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 400;
+}
+
+.total {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.progressContainer {
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.trendIcon {
+    color: #22c55e;
+}
+
+.buyButton {
+    font-size: 0.75rem !important;
+    padding: 0.25rem 0.5rem !important;
+    height: auto !important;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

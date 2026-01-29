@@ -1,0 +1,82 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-family: var(--font-sans);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.button:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 2px;
+}
+
+/* Variants */
+.primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border-color: var(--primary);
+}
+
+.primary:hover {
+    background-color: #333;
+}
+
+.secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+    border-color: var(--border);
+}
+
+.secondary:hover {
+    background-color: #d4d4d4;
+}
+
+.danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+.danger:hover {
+    background-color: #b71c1c;
+}
+
+.ghost {
+    background-color: transparent;
+    color: var(--foreground);
+}
+
+.ghost:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Sizes */
+.sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    height: 32px;
+}
+
+.md {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    height: 40px;
+}
+
+.lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    height: 48px;
+}
+
+.fullWidth {
+    width: 100%;
+}
