@@ -8,12 +8,12 @@ import styles from './page.module.css';
 import { ORDERS, Order } from '@/lib/osData';
 
 const statusColors: Record<string, string> = {
-    pending: '#9ca3af', // Gray
-    prepress: '#3b82f6', // Blue
-    printing: '#eab308', // Yellow
-    finishing: '#f97316', // Orange
-    ready: '#22c55e', // Green
-    delivered: '#111827', // Black
+    pending: '#F3F4F6', // Grey (Waiting)
+    prepress: '#00AEEF', // Cyan (Production/Action)
+    printing: '#00AEEF', // Cyan
+    finishing: '#FFF200', // Yellow (Processing/Attention)
+    ready: '#FFF200', // Yellow (Waiting for pickup)
+    delivered: '#111111', // Black (Finalized)
 };
 
 const statusLabels: Record<string, string> = {
@@ -107,7 +107,7 @@ export default function ProductionPage() {
                                 </td>
                                 <td className="mono">#{order.id}</td>
                                 <td>
-                                    <span className={styles.statusBadge} style={{ backgroundColor: statusColors[order.status] + '20', color: statusColors[order.status] }}>
+                                    <span className={styles.statusBadge} style={{ backgroundColor: statusColors[order.status], color: order.status === 'delivered' ? 'white' : '#111111' }}>
                                         {statusLabels[order.status]}
                                     </span>
                                 </td>

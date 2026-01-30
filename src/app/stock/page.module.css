@@ -19,17 +19,17 @@
 .headerTitle h1 {
     font-size: 1.5rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    color: var(--cmyk-black);
 }
 
 .badge {
-    background-color: #e0e0e0;
-    color: #333;
+    background-color: var(--border-line);
+    color: var(--ink-grey);
     padding: 0.25rem 0.6rem;
-    border-radius: 99px;
+    border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
-    font-family: var(--font-mono);
+    font-family: var(--font-data);
 }
 
 .actions {
@@ -46,80 +46,93 @@
 .searchIcon {
     position: absolute;
     left: 10px;
-    color: #888;
+    color: var(--ink-grey);
 }
 
 .searchInput {
     padding: 0.5rem 0.75rem 0.5rem 2.25rem;
-    border-radius: 6px;
-    border: 1px solid var(--border);
+    border-radius: 4px;
+    border: 1px solid var(--border-line);
     font-size: 0.9rem;
     width: 240px;
+    font-family: var(--font-data);
+    transition: all 0.1s;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--cmyk-cyan);
+    border-width: 2px;
+    padding: calc(0.5rem - 1px) calc(0.75rem - 1px) calc(0.5rem - 1px) calc(2.25rem - 1px);
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
 }
 
 .stockCard {
-    transition: all 0.2s;
-    border: 1px solid var(--border);
+    transition: all 0.1s;
+    border: 1px solid var(--border-line);
+    background: white;
+    position: relative;
+    /* "Barra de Status: Uma linha fina abaixo do número." handled in TSX or here? */
+    /* Let's use border-top or a pseudo element for status if not dynamic enough */
 }
 
 .stockCard:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.lowStock {
-    border-color: #fca5a5;
-    background-color: #fef2f2;
+    transform: translateY(-1px);
+    border-color: var(--cmyk-cyan);
 }
 
 .cardHeader {
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .iconWrapper {
     padding: 0.5rem;
-    background-color: #f3f4f6;
-    border-radius: 6px;
-    color: #4b5563;
-}
-
-.lowStock .iconWrapper {
-    background-color: #fee2e2;
-    color: #dc2626;
+    background-color: #F4F6F8;
+    border-radius: 4px;
+    color: var(--cmyk-black);
 }
 
 .cardTitle h3 {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
+    /* Bold/Black */
     line-height: 1.2;
+    font-family: var(--font-brand);
+    /* Circular Std equivalent */
+    color: var(--cmyk-black);
 }
 
 .cardTitle span {
     font-size: 0.75rem;
-    color: #666;
-    font-family: var(--font-mono);
+    color: var(--ink-grey);
+    font-family: var(--font-data);
+}
+
+/* Alert specific styles override via explicit class */
+.lowStock {
+    /* handled by TSX conditional styling usually, but here for reference */
+    /* border-color: var(--cmyk-magenta); */
 }
 
 .alertIcon {
     margin-left: auto;
-    color: #dc2626;
-    animation: pulse 2s infinite;
+    color: var(--cmyk-magenta);
 }
 
 .stockDisplay {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
 }
 
 .values {
@@ -130,69 +143,66 @@
 
 .current {
     font-size: 1.5rem;
-    font-weight: 700;
+    /* 24px */
+    font-weight: 400;
+    /* Regular */
+    font-family: var(--font-data);
+    /* Arial */
+    color: var(--cmyk-black);
 }
 
 .current small {
     font-size: 0.8rem;
-    color: #666;
+    color: var(--ink-grey);
     font-weight: 400;
 }
 
 .total {
     font-size: 0.8rem;
-    color: #666;
+    color: var(--ink-grey);
+    font-family: var(--font-data);
 }
 
-.progressContainer {
-    height: 8px;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
+/* Status Bar Line */
+.statusBar {
+    height: 3px;
+    width: 100%;
+    background-color: #eee;
+    margin-top: 0.25rem;
+    border-radius: 1.5px;
     overflow: hidden;
 }
 
-.progressBar {
+.statusFill {
     height: 100%;
-    border-radius: 4px;
-    transition: width 0.5s ease;
+    border-radius: 1.5px;
+    transition: width 0.3s ease;
 }
 
 .footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-line);
 }
 
 .stat {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    font-size: 0.8rem;
-    color: #666;
+    font-size: 0.75rem;
+    color: var(--ink-grey);
+    font-family: var(--font-data);
 }
 
 .trendIcon {
-    color: #22c55e;
+    color: var(--cmyk-cyan);
 }
 
 .buyButton {
-    font-size: 0.75rem !important;
-    padding: 0.25rem 0.5rem !important;
-    height: auto !important;
-}
-
-@keyframes pulse {
-    0% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
-
-    100% {
-        opacity: 1;
-    }
+    /* Inherits from Button module, just sizing here */
+    font-size: 0.7rem !important;
+    padding: 0.1rem 0.5rem !important;
+    height: 24px !important;
 }

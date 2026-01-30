@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter, Roboto_Mono } from 'next/font/google';
+import { Plus_Jakarta_Sans, Roboto_Mono } from 'next/font/google';
 import './globals.css';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { KeyboardNavigator } from '@/components/layout/KeyboardNavigator';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const robotoMono = Roboto_Mono({ subsets: ['latin'], variable: '--font-roboto-mono' });
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-brand' });
+const robotoMono = Roboto_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
     title: 'Impresul Core',
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="pt-BR">
-            <body className={`${inter.variable} ${robotoMono.variable}`}>
+            <body className={`${jakarta.variable} ${robotoMono.variable}`}>
                 <div style={{ display: 'flex', minHeight: '100vh' }}>
                     <Sidebar />
                     <KeyboardNavigator />

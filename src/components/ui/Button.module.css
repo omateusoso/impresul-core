@@ -2,12 +2,19 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.2s ease;
+    border-radius: 4px;
+    /* Industrial Clean: 4px */
+    font-weight: 700;
+    /* Bold for "A Voz do Sistema" */
+    transition: all 0.1s ease;
+    /* Snappy transition */
     cursor: pointer;
     border: 1px solid transparent;
-    font-family: var(--font-sans);
+    font-family: var(--font-brand);
+    /* Buttons are part of the UI "Voice" */
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 0.85rem;
 }
 
 .button:active {
@@ -15,66 +22,69 @@
 }
 
 .button:focus-visible {
-    outline: 2px solid var(--foreground);
+    outline: 2px solid var(--cmyk-cyan);
     outline-offset: 2px;
 }
 
 /* Variants */
 .primary {
-    background-color: var(--primary);
-    color: var(--primary-foreground);
-    border-color: var(--primary);
+    background-color: var(--cmyk-cyan);
+    color: #FFFFFF;
+    border-color: var(--cmyk-cyan);
 }
 
 .primary:hover {
-    background-color: #333;
+    filter: brightness(0.95);
 }
 
 .secondary {
-    background-color: var(--secondary);
-    color: var(--secondary-foreground);
-    border-color: var(--border);
+    background-color: transparent;
+    color: var(--cmyk-black);
+    border-color: var(--border-line);
 }
 
 .secondary:hover {
-    background-color: #d4d4d4;
+    background-color: #F4F6F8;
+    border-color: #cfd8dc;
 }
 
 .danger {
-    background-color: var(--danger);
+    background-color: var(--cmyk-magenta);
     color: white;
+    border-color: var(--cmyk-magenta);
 }
 
 .danger:hover {
-    background-color: #b71c1c;
+    filter: brightness(0.9);
 }
 
 .ghost {
     background-color: transparent;
-    color: var(--foreground);
+    color: var(--ink-grey);
 }
 
 .ghost:hover {
     background-color: rgba(0, 0, 0, 0.05);
+    color: var(--cmyk-black);
 }
 
 /* Sizes */
 .sm {
-    padding: 0.25rem 0.75rem;
-    font-size: 0.8rem;
-    height: 32px;
+    padding: 0 0.75rem;
+    font-size: 0.75rem;
+    height: 28px;
 }
 
 .md {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    height: 40px;
+    padding: 0 1rem;
+    font-size: 0.85rem;
+    height: 36px;
 }
 
 .lg {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    height: 48px;
+    padding: 0 1.5rem;
+    font-size: 0.95rem;
+    height: 44px;
 }
 
 .fullWidth {

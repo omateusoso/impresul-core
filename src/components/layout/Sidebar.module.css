@@ -1,8 +1,10 @@
 .sidebar {
-    width: 280px;
+    width: 260px;
+    /* Slightly more compact */
     height: 100vh;
-    background-color: var(--surface);
-    border-right: 1px solid var(--border);
+    background-color: #F4F6F8;
+    /* Secondary Background */
+    border-right: 1px solid var(--border-line);
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -13,75 +15,121 @@
 
 .logo {
     padding: 1.5rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--border-line);
+    background-color: white;
+    /* Logo area pops out */
 }
 
 .logo h1 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--foreground);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--cmyk-black);
+    text-transform: uppercase;
 }
 
 .logo span {
-    color: var(--accent);
+    color: var(--cmyk-cyan);
 }
 
 .nav {
     flex: 1;
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.25rem;
 }
 
 .link {
     display: flex;
     align-items: center;
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+    border-radius: 4px;
+    /* Industrial Clean: 4px */
     text-decoration: none;
-    color: var(--secondary-foreground);
-    transition: all 0.2s ease;
+    color: var(--ink-grey);
+    /* Inactive text is grey */
+    transition: all 0.1s ease;
+    font-family: var(--font-brand);
+    font-size: 0.85rem;
+    font-weight: 500;
     border: 1px solid transparent;
+    /* Prevent layout shift on active */
+    position: relative;
 }
 
 .link:hover {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: rgba(0, 0, 0, 0.03);
+    color: var(--cmyk-black);
 }
 
 .active {
-    background-color: var(--background);
-    color: var(--accent);
-    border-color: var(--border);
-    font-weight: 600;
+    background-color: #E0F7FA;
+    /* Very light cyan bg */
+    color: var(--cmyk-cyan);
+    font-weight: 700;
+    border-color: rgba(0, 174, 239, 0.2);
+    /* Subtle cyan border */
+}
+
+/* Vertical Cyan Bar for active state */
+.active::before {
+    content: '';
+    position: absolute;
+    left: -0.75rem;
+    /* Outside the padding */
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--cmyk-cyan);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .iconWrapper {
     margin-right: 0.75rem;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+/* Icon Styles */
+.link svg {
+    stroke-width: 1.5px;
+    /* Thin outline default */
+    transition: all 0.2s;
+}
+
+.active svg {
+    stroke-width: 2.5px;
+    /* Thicker stroke on active */
+    fill: rgba(0, 174, 239, 0.2);
+    /* Subtle fill */
 }
 
 .label {
     flex: 1;
-    font-size: 0.9rem;
 }
 
 .shortcut {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: #888;
-    background: #eee;
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    font-family: var(--font-data);
+    font-size: 0.7rem;
+    color: #999;
+    background: transparent;
+    padding: 0;
+    border: none;
+    font-weight: 400;
+}
+
+.active .shortcut {
+    color: var(--cmyk-cyan);
+    font-weight: 600;
 }
 
 .footer {
     padding: 1rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border-line);
+    background-color: white;
 }
 
 .userProfile {
@@ -93,14 +141,16 @@
 .avatar {
     width: 32px;
     height: 32px;
-    background-color: var(--accent);
+    background-color: var(--cmyk-cyan);
     color: white;
-    border-radius: 50%;
+    border-radius: 4px;
+    /* Square avatar */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 600;
-    font-size: 0.875rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    font-family: var(--font-brand);
 }
 
 .userInfo {
@@ -109,11 +159,16 @@
 }
 
 .userName {
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--cmyk-black);
+    font-family: var(--font-brand);
 }
 
 .userRole {
-    font-size: 0.75rem;
-    color: #666;
+    font-size: 0.7rem;
+    color: var(--ink-grey);
+    font-family: var(--font-data);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }

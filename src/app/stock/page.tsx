@@ -3,7 +3,6 @@
 import React from 'react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
 import { Search, Package, AlertTriangle, ArrowDown, ShoppingCart } from 'lucide-react';
 import styles from './page.module.css';
 import { SUBSTRATES } from '@/lib/mockData';
@@ -41,7 +40,7 @@ export default function StockPage() {
                     const isLowStock = item.stock <= item.warningThreshold;
 
                     return (
-                        <Card key={item.id} className={`${styles.stockCard} ${isLowStock ? styles.lowStock : ''}`}>
+                        <div key={item.id} className={`${styles.stockCard} ${isLowStock ? styles.lowStock : ''}`}>
                             <div className={styles.cardHeader}>
                                 <div className={styles.iconWrapper}>
                                     <Package size={20} />
@@ -60,15 +59,15 @@ export default function StockPage() {
                             <div className={styles.stockDisplay}>
                                 <div className={styles.values}>
                                     <span className={styles.current}>{item.stock.toLocaleString()} <small>{item.unit}</small></span>
-                                    <span className={styles.total}>Capacidade: {item.maxStock.toLocaleString()}</span>
+                                    <span className={styles.total}>/ {item.maxStock.toLocaleString()}</span>
                                 </div>
 
-                                <div className={styles.progressContainer}>
+                                <div className={styles.statusBar}>
                                     <div
-                                        className={styles.progressBar}
+                                        className={styles.statusFill}
                                         style={{
                                             width: `${percentage}%`,
-                                            backgroundColor: isLowStock ? '#dc2626' : '#22c55e'
+                                            backgroundColor: isLowStock ? '#EC008C' : '#00AEEF' // CMYK Magenta / Cyan
                                         }}
                                     />
                                 </div>
@@ -81,11 +80,11 @@ export default function StockPage() {
                                 </div>
                                 {isLowStock && (
                                     <Button variant="danger" size="sm" className={styles.buyButton}>
-                                        Repor Estoque
+                                        Repor
                                     </Button>
                                 )}
                             </div>
-                        </Card>
+                        </div>
                     );
                 })}
             </div>

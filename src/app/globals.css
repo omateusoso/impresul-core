@@ -1,21 +1,43 @@
 :root {
-  /* Colors */
-  --background: #F5F5F7;
-  --surface: #FFFFFF;
-  --foreground: #111111;
-  --border: #E0E0E0;
-  --primary: #000000;
+  /* CMYK Funcional Palette */
+  --cmyk-cyan: #00AEEF;
+  --cmyk-magenta: #EC008C;
+  --cmyk-yellow: #FFF200;
+  --cmyk-black: #111111;
+  /* Key Black */
+
+  /* Neutral Scale */
+  --background: #FFFFFF;
+  /* Paper White */
+  --surface: #F4F6F8;
+  /* Container Grey */
+  --foreground: var(--cmyk-black);
+
+  --ink-grey: #5F6368;
+  /* Labels */
+  --border-line: #DDE2E5;
+  /* Table/Input Borders */
+
+  /* Semantic Aliases */
+  --primary: var(--cmyk-cyan);
   --primary-foreground: #FFFFFF;
-  --secondary: #E5E5E5;
-  --secondary-foreground: #111111;
-  --accent: #0055FF;
+
+  --secondary: #FFFFFF;
+  --secondary-foreground: var(--cmyk-black);
+
+  --accent: var(--cmyk-cyan);
   --accent-foreground: #FFFFFF;
-  --danger: #D32F2F;
-  --success: #2E7D32;
-  --warning: #ED6C02;
+
+  --danger: var(--cmyk-magenta);
+  --warning: var(--cmyk-yellow);
+
+  --border: var(--border-line);
 
   /* Typography */
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-brand: 'Plus Jakarta Sans', system-ui, sans-serif;
+  /* Headings */
+  --font-data: 'Arial', sans-serif;
+  /* Data Tables, Inputs */
   --font-mono: 'Roboto Mono', monospace;
 }
 
@@ -29,14 +51,23 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--background);
+  background-color: var(--surface);
+  /* Dashboard background is grey */
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-data);
+  /* Default to Arial for data density */
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  min-height: 100vh;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 a {
@@ -46,17 +77,20 @@ a {
 
 /* Utilities */
 .container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 1.5rem;
 }
 
 .mono {
-  font-family: var(--font-mono);
+  font-family: var(--font-data);
+  /* Prefer Arial numbers over Mono for "Excel" feel, unless strictly code */
+  font-feature-settings: "tnum";
+  /* Tabular numbers */
 }
 
-/* High Contrast Focus States */
+/* High Contrast Focus States - Cyan Focus */
 :focus-visible {
-  outline: 2px solid var(--foreground);
+  outline: 2px solid var(--cmyk-cyan);
   outline-offset: 2px;
 }

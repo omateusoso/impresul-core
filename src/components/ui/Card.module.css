@@ -1,26 +1,31 @@
 .card {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    background-color: white;
+    border: 1px solid var(--border-line);
+    border-radius: 4px;
+    /* Industrial Clean: 4px */
     overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: none;
+    /* Flattened look */
 }
 
 .header {
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-line);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fafafa;
+    background-color: white;
 }
 
 .title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--foreground);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--cmyk-black);
+    font-family: var(--font-brand);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
 }
 
 .content {
-    padding: 1.5rem;
+    padding: 1rem;
 }
