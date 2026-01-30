@@ -1,0 +1,439 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100vh;
+    padding-bottom: 2rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 0.5rem;
+}
+
+.headerTitle h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cmyk-black);
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: var(--ink-grey);
+}
+
+.sectorTabs {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.sectorTab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 99px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.activeSector {
+    background: var(--cmyk-black);
+    color: white;
+    border-color: var(--cmyk-black);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Swimlanes */
+.swimlanesContainer {
+    display: flex;
+    gap: 1.5rem;
+    height: calc(100vh - 160px);
+    overflow-x: auto;
+    padding: 1rem 0.5rem;
+}
+
+.lane {
+    min-width: 320px;
+    max-width: 320px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.laneHeader {
+    padding: 1rem;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Lane Status indicators */
+.running .machineName {
+    color: #16a34a;
+}
+
+.stopped .machineName {
+    color: #ef4444;
+}
+
+.idle .machineName {
+    color: #94a3b8;
+}
+
+.machineName {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.statusBadge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.laneBody {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.emptyState {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    border: 2px dashed #e2e8f0;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+/* Job Card */
+.card {
+    background: white;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.1s;
+    border-left: 4px solid var(--cmyk-black);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75rem;
+}
+
+.jobId {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.client {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cmyk-black);
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.quantity {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--cmyk-black);
+    line-height: 1;
+}
+
+.specs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.specTag {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.sectorInfo {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed #e2e8f0;
+    font-size: 0.8rem;
+    color: #475569;
+}
+
+.cardFooter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.statusDot.running {
+    background: #16a34a;
+    box-shadow: 0 0 0 2px #bbf7d0;
+}
+
+.statusDot.queue {
+    background: #94a3b8;
+}
+
+/* Tablet Modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.tabletModal {
+    width: 90%;
+    max-width: 1000px;
+    height: 85vh;
+    background: #1e293b;
+    /* Dark mode for tablets */
+    color: white;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modalHeader {
+    background: #0f172a;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jobInfo h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.machineTag {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.modalBody {
+    flex: 1;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    overflow-y: auto;
+}
+
+.mainInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.bigStat label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #94a3b8;
+    display: block;
+}
+
+.giantNumber {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+    display: block;
+}
+
+.unit {
+    font-size: 1.5rem;
+    color: #64748b;
+}
+
+.timerSection {
+    background: #334155;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.timerDisplay {
+    font-family: monospace;
+    font-size: 4rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.timerControls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.timerBtn {
+    padding: 1.5rem 0.5rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.6;
+    transition: all 0.2s;
+}
+
+.timerBtn:active {
+    transform: scale(0.95);
+}
+
+.timerBtn.activeBtn {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.btnSetup {
+    background: #eab308;
+    color: black;
+}
+
+.btnRun {
+    background: #22c55e;
+}
+
+.btnStop {
+    background: #ef4444;
+    opacity: 1;
+}
+
+/* Material Section */
+.materialSection h3 {
+    font-size: 1.25rem;
+    border-bottom: 1px solid #475569;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #cbd5e1;
+}
+
+.materialGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.matCard,
+.matCalculated {
+    background: #334155;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.matCard label,
+.matInput label,
+.matCalculated label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #94a3b8;
+}
+
+.matInput {
+    background: #334155;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.matInput input {
+    background: #1e293b;
+    border: 1px solid #475569;
+    color: white;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    width: 150px;
+    text-align: right;
+    border-radius: 4px;
+}
