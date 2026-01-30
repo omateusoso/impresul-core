@@ -1,9 +1,7 @@
 .sidebar {
     width: 260px;
-    /* Slightly more compact */
     height: 100vh;
     background-color: #F4F6F8;
-    /* Secondary Background */
     border-right: 1px solid var(--border-line);
     display: flex;
     flex-direction: column;
@@ -17,7 +15,6 @@
     padding: 1.5rem;
     border-bottom: 1px solid var(--border-line);
     background-color: white;
-    /* Logo area pops out */
 }
 
 .logo h1 {
@@ -34,27 +31,43 @@
 
 .nav {
     flex: 1;
-    padding: 1rem 0.75rem;
+    padding: 1rem 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* Gap between lists */
+    overflow-y: auto;
+}
+
+.group {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
+.groupTitle {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-grey);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    font-family: var(--font-data);
+}
+
 .link {
     display: flex;
     align-items: center;
-    padding: 0.6rem 0.75rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 4px;
-    /* Industrial Clean: 4px */
     text-decoration: none;
     color: var(--ink-grey);
-    /* Inactive text is grey */
     transition: all 0.1s ease;
     font-family: var(--font-brand);
     font-size: 0.85rem;
     font-weight: 500;
     border: 1px solid transparent;
-    /* Prevent layout shift on active */
     position: relative;
 }
 
@@ -65,19 +78,16 @@
 
 .active {
     background-color: #E0F7FA;
-    /* Very light cyan bg */
     color: var(--cmyk-cyan);
     font-weight: 700;
     border-color: rgba(0, 174, 239, 0.2);
-    /* Subtle cyan border */
 }
 
-/* Vertical Cyan Bar for active state */
 .active::before {
     content: '';
     position: absolute;
-    left: -0.75rem;
-    /* Outside the padding */
+    left: -0.7rem;
+    /* Adjusted for padding */
     top: 0;
     bottom: 0;
     width: 4px;
@@ -93,18 +103,14 @@
     justify-content: center;
 }
 
-/* Icon Styles */
 .link svg {
     stroke-width: 1.5px;
-    /* Thin outline default */
     transition: all 0.2s;
 }
 
 .active svg {
     stroke-width: 2.5px;
-    /* Thicker stroke on active */
     fill: rgba(0, 174, 239, 0.2);
-    /* Subtle fill */
 }
 
 .label {
@@ -113,7 +119,7 @@
 
 .shortcut {
     font-family: var(--font-data);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: #999;
     background: transparent;
     padding: 0;
@@ -144,7 +150,6 @@
     background-color: var(--cmyk-cyan);
     color: white;
     border-radius: 4px;
-    /* Square avatar */
     display: flex;
     align-items: center;
     justify-content: center;

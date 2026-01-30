@@ -1,0 +1,189 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--cmyk-black);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+}
+
+.title p {
+    color: var(--ink-grey);
+    font-size: 0.9rem;
+    font-family: var(--font-data);
+}
+
+.roleSwitcher {
+    display: flex;
+    background-color: white;
+    padding: 0.25rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-line);
+    gap: 0.25rem;
+}
+
+.roleButton {
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ink-grey);
+    font-family: var(--font-brand);
+    transition: all 0.2s;
+}
+
+.roleButton.active {
+    background-color: var(--cmyk-black);
+    color: white;
+}
+
+.kpiGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.kpiCard {
+    background: white;
+    border: 1px solid var(--border-line);
+    border-radius: 6px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s;
+}
+
+.kpiCard:hover {
+    transform: translateY(-2px);
+    border-color: var(--cmyk-cyan);
+}
+
+.kpiIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F4F6F8;
+    color: var(--cmyk-black);
+}
+
+.kpiContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.kpiLabel {
+    font-size: 0.8rem;
+    color: var(--ink-grey);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.kpiValue {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: var(--font-data);
+    color: var(--cmyk-black);
+    letter-spacing: -0.03em;
+}
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.sectionTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--cmyk-black);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.machineList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.machineItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background-color: #FAFAFA;
+    border-left: 3px solid transparent;
+    border-radius: 0 4px 4px 0;
+}
+
+.machineItem.running {
+    border-left-color: var(--cmyk-cyan);
+    background-color: #E0F7FA;
+}
+
+.machineItem.error {
+    border-left-color: var(--cmyk-magenta);
+    background-color: #FFF0F5;
+}
+
+.machineItem.idle {
+    border-left-color: var(--cmyk-yellow);
+}
+
+.taskQueue {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.taskItem {
+    padding: 0.75rem;
+    border: 1px solid var(--border-line);
+    border-radius: 4px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taskInfo h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.taskInfo p {
+    font-size: 0.75rem;
+    color: var(--ink-grey);
+}
+
+.priorityBadge {
+    padding: 2px 6px;
+    background-color: #FFF0F5;
+    color: var(--cmyk-magenta);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 2px;
+}

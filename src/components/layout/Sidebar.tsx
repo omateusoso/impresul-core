@@ -2,15 +2,53 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Calculator, Printer, Package, Truck, Settings } from 'lucide-react';
+import {
+    Home,
+    Calculator,
+    Printer,
+    Package,
+    Briefcase,
+    Users,
+    FileCheck,
+    Scissors,
+    Receipt,
+    DollarSign,
+    Box
+} from 'lucide-react';
 import styles from './Sidebar.module.css';
 
-const MENU_ITEMS = [
-    { label: 'Mesa de Comando', icon: Home, path: '/', shortcut: 'F1' },
-    { label: 'Engenharia de Vendas', icon: Calculator, path: '/quotes', shortcut: 'F2' },
-    { label: 'Chão de Fábrica', icon: Printer, path: '/production', shortcut: 'F3' },
-    { label: 'Almoxarifado', icon: Package, path: '/stock', shortcut: 'F4' },
-    { label: 'Expedição', icon: Truck, path: '/shipping', shortcut: 'F5' },
+const MENU_GROUPS = [
+    {
+        title: 'Mesa de Comando',
+        items: [
+            { label: 'Dashboard', icon: Home, path: '/', shortcut: 'F1' },
+            { label: 'Estoque Global', icon: Box, path: '/stock', shortcut: 'F8' },
+        ]
+    },
+    {
+        title: 'Comercial & Custos',
+        items: [
+            { label: 'Ordens de Serviço', icon: Briefcase, path: '/service-orders', shortcut: 'F2' },
+            { label: 'Orçamentos', icon: Calculator, path: '/engineering/quotes', shortcut: 'F3' },
+            { label: 'Clientes', icon: Users, path: '/clients', shortcut: 'F4' },
+        ]
+    },
+    {
+        title: 'Chão de Fábrica',
+        items: [
+            { label: 'Pré-Impressão', icon: FileCheck, path: '/production/prepress', shortcut: 'Q' },
+            { label: 'Impressão', icon: Printer, path: '/production/printing', shortcut: 'W' },
+            { label: 'Corte & Vinco', icon: Scissors, path: '/production/cutting', shortcut: 'E' },
+            { label: 'Acabamento', icon: Package, path: '/production/finishing', shortcut: 'R' },
+        ]
+    },
+    {
+        title: 'Administrativo',
+        items: [
+            { label: 'Faturamento', icon: Receipt, path: '/admin/billing', shortcut: 'A' },
+            { label: 'Financeiro', icon: DollarSign, path: '/admin/finance', shortcut: 'S' },
+        ]
+    }
 ];
 
 export function Sidebar() {
@@ -23,24 +61,30 @@ export function Sidebar() {
             </div>
 
             <nav className={styles.nav}>
-                {MENU_ITEMS.map((item) => {
-                    const Icon = item.icon;
-                    const isActive = pathname === item.path;
+                {MENU_GROUPS.map((group, groupIndex) => (
+                    <div key={groupIndex} className={styles.group}>
+                        <h3 className={styles.groupTitle}>{group.title}</h3>
+                        {group.items.map((item) => {
+                            const Icon = item.icon;
+                            // Check if path is active or if it's a sub-route
+                            const isActive = pathname === item.path || pathname?.startsWith(item.path + '/');
 
-                    return (
-                        <Link
-                            key={item.path}
-                            href={item.path}
-                            className={`${styles.link} ${isActive ? styles.active : ''}`}
-                        >
-                            <div className={styles.iconWrapper}>
-                                <Icon size={20} />
-                            </div>
-                            <span className={styles.label}>{item.label}</span>
-                            <span className={styles.shortcut}>{item.shortcut}</span>
-                        </Link>
-                    );
-                })}
+                            return (
+                                <Link
+                                    key={item.path}
+                                    href={item.path}
+                                    className={`${styles.link} ${isActive ? styles.active : ''}`}
+                                >
+                                    <div className={styles.iconWrapper}>
+                                        <Icon size={18} />
+                                    </div>
+                                    <span className={styles.label}>{item.label}</span>
+                                    {item.shortcut && <span className={styles.shortcut}>{item.shortcut}</span>}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                ))}
             </nav>
 
             <div className={styles.footer}>

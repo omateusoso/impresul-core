@@ -1,0 +1,283 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.headerTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.headerTitle h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cmyk-black);
+}
+
+.kpiWrapper {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.kpiItem {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.kpiLabel {
+    font-size: 0.8rem;
+    color: var(--ink-grey);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.kpiValue {
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--font-data);
+}
+
+.textMagenta {
+    color: var(--cmyk-magenta);
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.filterBar {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+.filterButton {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid var(--border-line);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--ink-grey);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.filterButton:hover {
+    background: #f9fafb;
+    border-color: #cbd5e1;
+}
+
+/* Data Grid High Density */
+.gridContainer {
+    background: white;
+    border: 1px solid var(--border-line);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    background: #f8fafc;
+    padding: 0.6rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--ink-grey);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-line);
+}
+
+.table td {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-line);
+    vertical-align: middle;
+    font-size: 0.9rem;
+    color: var(--cmyk-black);
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table tr:hover {
+    background-color: #f1f5f9;
+}
+
+.mono {
+    font-family: var(--font-data);
+    font-variant-numeric: tabular-nums;
+}
+
+.clientCell {
+    display: flex;
+    flex-direction: column;
+}
+
+.clientName {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.jobTitle {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.avatar {
+    width: 28px;
+    height: 28px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #475569;
+}
+
+.paymentDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.actionButtons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.iconBtn {
+    padding: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: color 0.2s;
+}
+
+.iconBtn:hover {
+    color: var(--cmyk-cyan);
+}
+
+/* BIFURCATOR MODAL */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    backdrop-filter: blur(2px);
+}
+
+.bifurcatorModal {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.bifurcatorTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cmyk-black);
+}
+
+.bifurcatorOptions {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.optionCard {
+    flex: 1;
+    background: #f8fafc;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.optionCard:hover {
+    background: #e0f2fe;
+    border-color: var(--cmyk-cyan);
+    transform: translateY(-2px);
+}
+
+.optionIcon {
+    margin-bottom: 1rem;
+    color: var(--ink-grey);
+}
+
+.optionCard:hover .optionIcon {
+    color: var(--cmyk-cyan);
+}
+
+.optionCard h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--cmyk-black);
+}
+
+.optionCard p {
+    font-size: 0.85rem;
+    color: var(--ink-grey);
+    line-height: 1.4;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.closeBtn:hover {
+    text-decoration: underline;
+}
