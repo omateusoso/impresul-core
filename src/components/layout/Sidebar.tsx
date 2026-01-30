@@ -13,7 +13,8 @@ import {
     Scissors,
     Receipt,
     DollarSign,
-    Box
+    Box,
+    Truck
 } from 'lucide-react';
 import styles from './Sidebar.module.css';
 
@@ -40,6 +41,7 @@ const MENU_GROUPS = [
             { label: 'Impressão', icon: Printer, path: '/production/printing', shortcut: 'W' },
             { label: 'Corte & Vinco', icon: Scissors, path: '/production/cutting', shortcut: 'E' },
             { label: 'Acabamento', icon: Package, path: '/production/finishing', shortcut: 'R' },
+            { label: 'Expedição', icon: Truck, path: '/production/shipping', shortcut: 'T' },
         ]
     },
     {
