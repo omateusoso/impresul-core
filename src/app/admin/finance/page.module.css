@@ -1,0 +1,363 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-bottom: 2rem;
+    background: #f8fafc;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.headerTitle h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cmyk-black);
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: var(--ink-grey);
+}
+
+.balanceDisplay {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f0fdf4;
+    color: #166534;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #bbf7d0;
+}
+
+.tabs {
+    display: flex;
+    padding: 1rem 1.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+    background: white;
+    gap: 1.5rem;
+}
+
+.tab {
+    background: transparent;
+    border: none;
+    padding: 0.75rem 0;
+    font-size: 0.95rem;
+    color: #64748b;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.tab:hover {
+    color: #00AEEF;
+}
+
+.tab.active {
+    color: #00AEEF;
+    border-bottom-color: #00AEEF;
+}
+
+.contentArea {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+/* Dashboard Grid */
+.dashboardGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.5rem;
+    align-content: start;
+}
+
+.kpiCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.kpiLabel {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.kpiValuePositive {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #16a34a;
+    font-family: monospace;
+}
+
+.kpiValueNegative {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ef4444;
+    font-family: monospace;
+}
+
+.kpiValueNeutral {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f59e0b;
+    font-family: monospace;
+}
+
+.kpiValueWarning {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #dc2626;
+    font-family: monospace;
+}
+
+.kpiMeta {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-top: 0.5rem;
+}
+
+.chartContainer {
+    grid-column: 1 / -1;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    height: 300px;
+}
+
+.chartContainer h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    color: #475569;
+}
+
+.mockChart {
+    height: 100%;
+    position: relative;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.chartalert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fef2f2;
+    border: 1px solid #f87171;
+    color: #b91c1c;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+}
+
+/* Tables */
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.actionBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.table tr {
+    border-bottom: 1px solid #e2e8f0;
+    transition: background 0.1s;
+}
+
+.table tr:hover {
+    background: #f8fafc;
+}
+
+.table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.cellMoney {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    text-align: right;
+    color: #166534;
+    /* Green shade */
+}
+
+.cellMoneyRed {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    text-align: right;
+    color: #b91c1c;
+    /* Red shade */
+}
+
+.badge {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.fontBold {
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.textBold {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.colFlex {
+    display: flex;
+    flex-direction: column;
+}
+
+.subText {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.iconBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.iconBtn:hover {
+    background: #e2e8f0;
+    color: #00AEEF;
+}
+
+/* Approval */
+.badgeApproved {
+    color: #166534;
+    background: #dcfce7;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.approveBtn {
+    background: #ea580c;
+    /* Orange */
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.badgeAuto {
+    color: #64748b;
+    font-size: 0.75rem;
+    font-style: italic;
+}
+
+/* Commissions Locked */
+.infoBanner {
+    background: #fefce8;
+    color: #854d0e;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid #fde047;
+}
+
+.rowLocked {
+    background: #f8fafc;
+    color: #94a3b8;
+}
+
+.rowLocked td,
+.rowLocked .fontBold,
+.rowLocked .cellMoney {
+    color: #cbd5e1 !important;
+}
+
+.badgeLocked {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #ef4444;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.badgeOpen {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #16a34a;
+    font-weight: 700;
+    font-size: 0.75rem;
+}

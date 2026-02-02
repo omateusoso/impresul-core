@@ -49,6 +49,7 @@ const MENU_GROUPS = [
         items: [
             { label: 'Faturamento', icon: Receipt, path: '/admin/billing', shortcut: 'A' },
             { label: 'Financeiro', icon: DollarSign, path: '/admin/finance', shortcut: 'S' },
+            { label: 'Gestão de Equipe', icon: Users, path: '/admin/team', shortcut: 'D' },
         ]
     }
 ];
@@ -59,7 +60,7 @@ export function Sidebar() {
     return (
         <aside className={styles.sidebar}>
             <div className={styles.logo}>
-                <h1>IMPRESUL<span>CORE</span></h1>
+                <h1>GRÁFICA<span>XYZ</span></h1>
             </div>
 
             <nav className={styles.nav}>

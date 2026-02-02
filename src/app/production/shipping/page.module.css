@@ -341,3 +341,69 @@
     padding: 1.5rem;
     border-top: 1px solid #e2e8f0;
 }
+
+.uploadArea.hasFile {
+    border-color: #10b981;
+    background: #ecfdf5;
+    border-style: solid;
+}
+
+/* Print Styles */
+@media print {
+
+    /* Hide everything by default */
+    :global(body) * {
+        visibility: hidden;
+    }
+
+    /* Only show the printable modal */
+    .printableModal,
+    .printableModal * {
+        visibility: visible;
+    }
+
+    .printableModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+        max-height: none;
+        /* Allow full height print */
+        overflow: visible;
+    }
+
+    .modalOverlay {
+        background: white;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* Hide UI elements not for print */
+    .noPrint,
+    .closeBtn {
+        display: none !important;
+    }
+
+    /* Ensure list is fully visible */
+    .modalBody {
+        overflow: visible;
+        padding: 0;
+    }
+
+    .manifestList {
+        background: white;
+        padding: 0;
+        border: none;
+    }
+
+    .manifestItem {
+        border-bottom: 1px solid #000;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+}

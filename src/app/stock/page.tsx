@@ -22,6 +22,9 @@ export default function StockPage() {
         compatibleMachines: []
     });
 
+    // Mock Empty State Toggle for Demo Purpose
+    const [isEmptyState, setIsEmptyState] = useState(INVENTORY_ITEMS.length === 0);
+
     const filteredItems = INVENTORY_ITEMS.filter(item => {
         const matchesFilter = activeFilter === 'all' || item.category === activeFilter;
         const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -39,49 +42,89 @@ export default function StockPage() {
 
     return (
         <div className={styles.container}>
+            {/* Header */}
             <header className={styles.header}>
-                <div className={styles.headerTitle}>
-                    <h1>Gestão de Estoque</h1>
-                    <span className={styles.badge}>{INVENTORY_ITEMS.length} Itens</span>
+                <div className={styles.breadcrumb}>
+                    <span>Home</span> / <span className={styles.activeBreadcrumb}>Estoque</span>
                 </div>
-                <div className={styles.actions}>
-                    <Button variant="primary" onClick={() => setIsModalOpen(true)}>
-                        <Plus size={16} className="mr-2" />
-                        Novo Substrato [F2]
-                    </Button>
+                <div className={styles.headerContent}>
+                    <div className={styles.headerTitle}>
+                        <h1>Gestão de Estoque</h1>
+                    </div>
+                    <div className={styles.actions}>
+                        <Button variant="outline">
+                            <Layers size={16} className="mr-2" />
+                            Configurar Categorias
+                        </Button>
+                        <Button variant="primary" onClick={() => setIsModalOpen(true)}>
+                            <Plus size={16} className="mr-2" />
+                            Novo Item [F2]
+                        </Button>
+                    </div>
                 </div>
             </header>
 
-            <div className={styles.toolbar}>
-                <div className={styles.filterPills}>
-                    <FilterPill label="Todos" active={activeFilter === 'all'} onClick={() => setActiveFilter('all')} />
-                    <FilterPill label="Offset (Papéis)" active={activeFilter === 'offset'} onClick={() => setActiveFilter('offset')} />
-                    <FilterPill label="Comunicação Visual" active={activeFilter === 'visual'} onClick={() => setActiveFilter('visual')} />
-                    <FilterPill label="Insumos" active={activeFilter === 'supply'} onClick={() => setActiveFilter('supply')} />
-                </div>
-                <div className={styles.searchBox}>
-                    <Search size={16} className={styles.searchIcon} />
-                    <input
-                        className={styles.searchInput}
-                        placeholder="Buscar material..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                </div>
-            </div>
+            {!isEmptyState ? (
+                <>
+                    {/* Toolbar */}
+                    <div className={styles.toolbar}>
+                        <div className={styles.searchBox}>
+                            <Search size={18} className={styles.searchIcon} />
+                            <input
+                                className={styles.searchInput}
+                                placeholder="Buscar por nome, código ou fabricante..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </div>
+                        <div className={styles.filters}>
+                            <select className={styles.filterSelect} onChange={(e) => setActiveFilter(e.target.value as any)}>
+                                <option value="all">Todas Categorias</option>
+                                <option value="offset">Papéis Offset</option>
+                                <option value="visual">Comunicação Visual</option>
+                                <option value="supply">Insumos</option>
+                            </select>
+                            <select className={styles.filterSelect}>
+                                <option>Status: Todos</option>
+                                <option>Em Estoque</option>
+                                <option>Baixo</option>
+                                <option>Crítico</option>
+                            </select>
+                            <select className={styles.filterSelect}>
+                                <option>Máquina: Todas</option>
+                                <option>Heidelberg</option>
+                                <option>Plotter</option>
+                            </select>
+                        </div>
+                    </div>
 
-            <div className={styles.grid}>
-                {filteredItems.map(item => (
-                    <InventoryCard key={item.id} item={item} />
-                ))}
-            </div>
+                    {/* Grid Content */}
+                    <div className={styles.grid}>
+                        {filteredItems.map(item => (
+                            <InventoryCard key={item.id} item={item} />
+                        ))}
+                    </div>
+                </>
+            ) : (
+                /* Empty State */
+                <div className={styles.emptyState}>
+                    <div className={styles.emptyIllustration}>
+                        <Package size={64} strokeWidth={1} />
+                    </div>
+                    <h2>Seu almoxarifado está vazio</h2>
+                    <p>Cadastre suas matérias-primas para que o sistema possa calcular orçamentos automáticos. Você pode cadastrar papéis, tintas, chapas ou qualquer insumo.</p>
+                    <Button variant="primary" onClick={() => setIsModalOpen(true)}>
+                        Cadastrar Primeiro Material
+                    </Button>
+                </div>
+            )}
 
             {/* SMART MODAL */}
             {isModalOpen && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modal}>
                         <div className={styles.modalHeader}>
-                            <h2>Cadastrar Novo Material</h2>
+                            <h2>Novo Material de Estoque</h2>
                             <button className={styles.closeButton} onClick={() => setIsModalOpen(false)}>
                                 <X size={20} />
                             </button>
@@ -89,105 +132,117 @@ export default function StockPage() {
 
                         <div className={styles.modalBody}>
                             <div className={styles.modalTabs}>
-                                <TabButton label="Identidade" icon={Package} active={activeTab === 'identity'} onClick={() => setActiveTab('identity')} />
-                                <TabButton label="Especificações" icon={Ruler} active={activeTab === 'specs'} onClick={() => setActiveTab('specs')} />
-                                <TabButton label="Compatibilidade" icon={Printer} active={activeTab === 'compatibility'} onClick={() => setActiveTab('compatibility')} />
-                                <TabButton label="Regras & Histórico" icon={History} active={activeTab === 'rules'} onClick={() => setActiveTab('rules')} />
+                                <TabButton label="1. Definição" icon={Package} active={activeTab === 'identity'} onClick={() => setActiveTab('identity')} />
+                                <TabButton label="2. Custos & Estoque" icon={History} active={activeTab === 'rules'} onClick={() => setActiveTab('rules')} />
+                                <TabButton label="3. Vínculos" icon={Printer} active={activeTab === 'compatibility'} onClick={() => setActiveTab('compatibility')} />
                             </div>
 
                             <div className={styles.tabContent}>
                                 {activeTab === 'identity' && (
                                     <div className={styles.formGrid}>
                                         <div className={styles.formGroup}>
-                                            <label>Tipo de Material</label>
-                                            <select
-                                                className={styles.select}
-                                                value={formData.type}
-                                                onChange={(e) => setFormData({ ...formData, type: e.target.value as any })}
-                                            >
-                                                <option value="rigid">Substrato Rígido/Folha (Papel, PS)</option>
-                                                <option value="roll">Substrato Flexível/Rolo (Lona, Vinil)</option>
-                                                <option value="supply">Insumo de Máquina (Tinta)</option>
+                                            <label>NOME DO MATERIAL</label>
+                                            <Input placeholder="Ex: Vinil Adesivo 3M Fosco" />
+                                        </div>
+
+                                        <div className={styles.formGroup}>
+                                            <label>CATEGORIA</label>
+                                            {/* Simulate Creatable Select */}
+                                            <select className={styles.select}>
+                                                <option>Selecionar ou digitar...</option>
+                                                <option>Papéis</option>
+                                                <option>Tintas</option>
+                                                <option>Filamentos</option>
                                             </select>
                                         </div>
+
                                         <div className={styles.formGroup}>
-                                            <label>Nome Comercial</label>
-                                            <Input placeholder="Ex: Couché Brilho Suzano" />
-                                        </div>
-                                        <div className={styles.row}>
-                                            <div className={styles.formGroup}>
-                                                <label>Código Interno</label>
-                                                <Input placeholder="Gerar Automático" />
-                                            </div>
-                                            <div className={styles.formGroup}>
-                                                <label>Fabricante</label>
-                                                <select className={styles.select}>
-                                                    <option>Suzano</option>
-                                                    <option>Klabin</option>
-                                                    <option>3M</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className={styles.row}>
-                                            <div className={styles.formGroup}>
-                                                <label>Custo Reposição (R$)</label>
-                                                <Input type="number" placeholder="0,00" />
-                                            </div>
-                                            <div className={styles.formGroup}>
-                                                <label>Unidade</label>
-                                                <select className={styles.select}>
-                                                    {formData.type === 'rigid' ? (
-                                                        <>
-                                                            <option>Resma (500fls)</option>
-                                                            <option>Folha Solta</option>
-                                                            <option>Milheiro</option>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <option>Rolo</option>
-                                                            <option>Metro Linear</option>
-                                                            <option>m²</option>
-                                                        </>
-                                                    )}
-                                                </select>
+                                            <label>FORMATO DE ENTRADA</label>
+                                            <div className={styles.formatSelector}>
+                                                <FormatOption
+                                                    icon={Layers}
+                                                    label="Folha/Unidade"
+                                                    desc="Papel, Chapas"
+                                                    active={formData.type === 'rigid'}
+                                                    onClick={() => setFormData({ ...formData, type: 'rigid' })}
+                                                />
+                                                <FormatOption
+                                                    icon={Archive}
+                                                    label="Rolo/Bobina"
+                                                    desc="Lona, Vinil"
+                                                    active={formData.type === 'roll'}
+                                                    onClick={() => setFormData({ ...formData, type: 'roll' })}
+                                                />
+                                                <FormatOption
+                                                    icon={AlertTriangle}
+                                                    label="Líquido/Peso"
+                                                    desc="Tintas, Resina"
+                                                    active={formData.type === 'supply'}
+                                                    onClick={() => setFormData({ ...formData, type: 'supply' })}
+                                                />
                                             </div>
                                         </div>
+
+                                        {formData.type === 'rigid' && (
+                                            <div className={styles.row}>
+                                                <InputAdornment label="LARGURA" suffix="mm" placeholder="660" />
+                                                <InputAdornment label="ALTURA" suffix="mm" placeholder="960" />
+                                                <InputAdornment label="GRAMATURA" suffix="g/m²" placeholder="300" />
+                                            </div>
+                                        )}
+                                        {formData.type === 'roll' && (
+                                            <div className={styles.row}>
+                                                <InputAdornment label="LARGURA BOBINA" suffix="m" placeholder="1.20" />
+                                                <InputAdornment label="COMPRIMENTO" suffix="m" placeholder="50" />
+                                            </div>
+                                        )}
+                                        {formData.type === 'supply' && (
+                                            <div className={styles.row}>
+                                                <InputAdornment label="VOLUME" suffix="L/Kg" placeholder="1" />
+                                            </div>
+                                        )}
                                     </div>
                                 )}
 
-                                {activeTab === 'specs' && (
+                                {activeTab === 'rules' && ( // Reusing 'rules' tab for Costs & Stock as per plan
                                     <div className={styles.formGrid}>
-                                        {formData.type === 'rigid' ? (
-                                            <>
-                                                <div className={styles.row}>
-                                                    <InputAdornment label="Gramatura" suffix="g/m²" placeholder="150" />
-                                                    <InputAdornment label="Espessura" suffix="micras" placeholder="---" />
+                                        <div className={styles.row}>
+                                            <div className={styles.formGroup}>
+                                                <label>CUSTO DE REPOSIÇÃO</label>
+                                                <div className={styles.adornmentWrapper}>
+                                                    <div className={styles.prefix}>R$</div>
+                                                    <input className={styles.adornmentInput} placeholder="0,00" type="number" />
                                                 </div>
-                                                <div className={styles.formGroup}>
-                                                    <label>Dimensões do Padrão</label>
-                                                    <div className={styles.row}>
-                                                        <InputAdornment suffix="mm" placeholder="Largura (660)" />
-                                                        <span style={{ alignSelf: 'center' }}>x</span>
-                                                        <InputAdornment suffix="mm" placeholder="Altura (960)" />
-                                                    </div>
+                                                <p className={styles.helperText}>Valor pago ao fornecedor por unidade de compra.</p>
+                                            </div>
+                                        </div>
+
+                                        <div className={styles.formGroup}>
+                                            <label>UNIDADE DE COMPRA VS. USO</label>
+                                            <div className={styles.row}>
+                                                <div className={styles.radioGroup}>
+                                                    <label><input type="radio" name="unit" defaultChecked /> Pacote/Caixa</label>
+                                                    <label><input type="radio" name="unit" /> Unidade Solta</label>
                                                 </div>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <div className={styles.row}>
-                                                    <InputAdornment label="Largura da Bobina" suffix="m" placeholder="3.20" />
-                                                    <InputAdornment label="Comprimento do Rolo" suffix="m" placeholder="50" />
-                                                </div>
-                                            </>
-                                        )}
+                                            </div>
+                                            <div className={styles.calculationPreview}>
+                                                <span>Custo calculado por unidade: <strong>R$ 0,20</strong></span>
+                                            </div>
+                                        </div>
+
+                                        <div className={styles.row}>
+                                            <InputAdornment label="ESTOQUE MÍNIMO" suffix="un" placeholder="10" />
+                                            <div className={styles.formGroup} style={{ flex: 2 }}>
+                                                <label>LOCALIZAÇÃO FÍSICA</label>
+                                                <Input placeholder="Corredor B, Prateleira 2" />
+                                            </div>
+                                        </div>
                                     </div>
                                 )}
 
                                 {activeTab === 'compatibility' && (
                                     <div className={styles.formGrid}>
                                         <p className={styles.helperText}>Marque onde este material pode ser utilizado:</p>
-
-                                        <h4 className={styles.groupTitle}>Offset & Digital Sheet</h4>
                                         <div className={styles.checkboxGrid}>
                                             {MACHINES.offset.map(m => (
                                                 <CheckboxCard
@@ -197,10 +252,6 @@ export default function StockPage() {
                                                     onChange={() => handleMachineToggle(m.name)}
                                                 />
                                             ))}
-                                        </div>
-
-                                        <h4 className={styles.groupTitle} style={{ marginTop: '1rem' }}>Grande Formato</h4>
-                                        <div className={styles.checkboxGrid}>
                                             {MACHINES.plotter.map(m => (
                                                 <CheckboxCard
                                                     key={m.id}
@@ -210,66 +261,44 @@ export default function StockPage() {
                                                 />
                                             ))}
                                         </div>
-                                    </div>
-                                )}
 
-                                {activeTab === 'rules' && (
-                                    <div className={styles.formGrid}>
-                                        <div className={styles.row}>
-                                            <InputAdornment label="Estoque Mínimo (Ponto de Pedido)" suffix="un" placeholder="5" />
-                                            <div className={styles.formGroup} style={{ flex: 2 }}>
-                                                <label>Localização Física</label>
-                                                <Input placeholder="Ex: Corredor B, Prateleira 4" />
-                                            </div>
-                                        </div>
-
-                                        <div className={styles.historyLog}>
-                                            <h4>Histórico Recente (Log)</h4>
-                                            <table className={styles.logTable}>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Data</th>
-                                                        <th>Tipo</th>
-                                                        <th>Qtd</th>
-                                                        <th>Usuário</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>29/01 14:30</td>
-                                                        <td style={{ color: '#16a34a' }}>Entrada</td>
-                                                        <td>+50</td>
-                                                        <td>Mateus</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>28/01 09:15</td>
-                                                        <td style={{ color: '#111' }}>Saída</td>
-                                                        <td>-5</td>
-                                                        <td>Jão</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        {/* Mock Empty State for Machines */}
+                                        {/* <div className={styles.emptyTabState}>
+                                            <p>Nenhuma máquina cadastrada.</p>
+                                            <Button variant="link">Cadastrar Uma Máquina</Button>
+                                        </div> */}
                                     </div>
                                 )}
                             </div>
                         </div>
 
                         <div className={styles.modalFooter}>
-                            <button className={styles.deleteButton}>
-                                <Trash2 size={16} /> Excluir Material
-                            </button>
+                            <Button variant="ghost" onClick={() => setIsModalOpen(false)}>Cancelar</Button>
                             <div className={styles.footerActions}>
-                                <Button variant="ghost" onClick={() => setIsModalOpen(false)}>Cancelar</Button>
-                                <Button variant="primary">
-                                    <Save size={16} className="mr-2" />
-                                    Salvar Alterações
+                                <Button variant="outline">Salvar e Cadastrar Outro</Button>
+                                <Button variant="primary" onClick={() => {
+                                    setIsModalOpen(false);
+                                    setIsEmptyState(false); // Demo transition
+                                }}>
+                                    Salvar e Fechar
                                 </Button>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
+        </div>
+    );
+}
+
+function FormatOption({ icon: Icon, label, desc, active, onClick }: any) {
+    return (
+        <div className={`${styles.formatOption} ${active ? styles.activeFormat : ''}`} onClick={onClick}>
+            <Icon size={24} />
+            <div className={styles.formatInfo}>
+                <span className={styles.formatLabel}>{label}</span>
+                <span className={styles.formatDesc}>{desc}</span>
+            </div>
         </div>
     );
 }

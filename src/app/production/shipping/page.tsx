@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/Button';
-import { Search, Filter, Truck, Package, MapPin, UserCheck, FileText, Camera, CheckSquare, Printer, Navigation } from 'lucide-react';
+import { Search, Filter, Truck, Package, MapPin, UserCheck, FileText, Camera, CheckSquare, Printer, Navigation, Upload, X } from 'lucide-react';
 import styles from './page.module.css';
 
 // Types
@@ -35,6 +35,9 @@ export default function ShippingPage() {
     const [isManifestModalOpen, setIsManifestModalOpen] = useState(false);
     const [isPodModalOpen, setIsPodModalOpen] = useState(false);
     const [selectedShipment, setSelectedShipment] = useState<Shipment | null>(null);
+    const [podFile, setPodFile] = useState<File | null>(null);
+
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     // Filter Logic
     const waitingShipments = shipments.filter(s => s.status === 'waiting');
@@ -56,18 +59,32 @@ export default function ShippingPage() {
         alert(`Romaneio criado com sucesso para ${driver}! Lista enviada para impressão.`);
     };
 
+    const handlePrintManifest = () => {
+        window.print();
+    };
+
     // POD Logic
     const handlePodClick = (shipment: Shipment) => {
-        if (shipment.status === 'delivered') { // Only for delivered items needing proof? Or maybe 'in_transit' -> 'delivered'? 
-            // The prompt says "When clicking an item in 'Delivered' column".
-            // Assuming 'Entregue' column contains items that physically arrived but need POD confirmation to clear.
+        if (shipment.status === 'delivered') {
             setSelectedShipment(shipment);
+            setPodFile(null); // Reset file
             setIsPodModalOpen(true);
+        }
+    };
+
+    const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setPodFile(e.target.files[0]);
         }
     };
 
     const confirmPod = () => {
         if (!selectedShipment) return;
+        if (!podFile) {
+            alert("Por favor, anexe a foto do canhoto.");
+            return;
+        }
+
         // In a real app, upload logic here
         alert(`Entrega confirmada para ${selectedShipment.client}. Faturamento notificado!`);
         // Remove from list or move to archive
@@ -140,13 +157,13 @@ export default function ShippingPage() {
             {/* MANIFEST MODAL */}
             {isManifestModalOpen && (
                 <div className={styles.modalOverlay}>
-                    <div className={styles.modal}>
+                    <div className={`${styles.modal} ${styles.printableModal}`}>
                         <div className={styles.modalHeader}>
                             <h2>Novo Romaneio de Saída</h2>
                             <button className={styles.closeBtn} onClick={() => setIsManifestModalOpen(false)}>×</button>
                         </div>
                         <div className={styles.modalBody}>
-                            <div className={styles.formGroup}>
+                            <div className={`${styles.formGroup} ${styles.noPrint}`}>
                                 <label>Motorista / Transportadora</label>
                                 <select className={styles.select} id="driver-select">
                                     <option>Moto 01 - João</option>
@@ -170,18 +187,23 @@ export default function ShippingPage() {
                                 ))}
                             </div>
 
-                            <div className={styles.routeOptimization}>
+                            <div className={`${styles.routeOptimization} ${styles.noPrint}`}>
                                 <Navigation size={16} />
                                 <span>Rota Otimizada: A → C → B (Economia estimada: 15 min)</span>
                             </div>
                         </div>
-                        <div className={styles.modalFooter}>
-                            <Button className="w-full" onClick={() => {
-                                const driver = (document.getElementById('driver-select') as HTMLSelectElement).value;
-                                confirmManifest(driver);
-                            }}>
-                                <Printer size={18} className="mr-2" /> Confirmar e Imprimir
-                            </Button>
+                        <div className={`${styles.modalFooter} ${styles.noPrint}`}>
+                            <div style={{ display: 'flex', gap: '1rem' }}>
+                                <Button variant="secondary" className="flex-1" onClick={handlePrintManifest}>
+                                    <Printer size={18} className="mr-2" /> Imprimir
+                                </Button>
+                                <Button className="flex-1" onClick={() => {
+                                    const driver = (document.getElementById('driver-select') as HTMLSelectElement).value;
+                                    confirmManifest(driver);
+                                }}>
+                                    <CheckSquare size={18} className="mr-2" /> Confirmar Saída
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -207,15 +229,37 @@ export default function ShippingPage() {
                                 <input type="text" className={styles.input} placeholder="Ex: Sr. José - Portaria" />
                             </div>
 
-                            <div className={styles.uploadArea}>
-                                <Camera size={32} />
-                                <span>Carregar Foto do Canhoto Assinado</span>
-                                <small>(Obrigatório para liberar Faturamento)</small>
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                hidden
+                                accept="image/*"
+                                capture="environment"
+                                onChange={handleFileSelect}
+                            />
+
+                            <div
+                                className={`${styles.uploadArea} ${podFile ? styles.hasFile : ''}`}
+                                onClick={() => fileInputRef.current?.click()}
+                            >
+                                {podFile ? (
+                                    <>
+                                        <CheckSquare size={32} color="#10b981" />
+                                        <span>{podFile.name}</span>
+                                        <small className="text-green-600">Arquivo pronto para envio</small>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Camera size={32} />
+                                        <span>Carregar Foto do Canhoto Assinado</span>
+                                        <small>(Obrigatório para liberar Faturamento)</small>
+                                    </>
+                                )}
                             </div>
                         </div>
                         <div className={styles.modalFooter}>
                             <Button variant="primary" className="w-full" onClick={confirmPod}>
-                                <CheckSquare size={18} className="mr-2" />
+                                <Upload size={18} className="mr-2" />
                                 Finalizar e Notificar Faturamento
                             </Button>
                         </div>

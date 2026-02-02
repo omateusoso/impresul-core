@@ -68,6 +68,17 @@
     color: var(--cmyk-black);
 }
 
+.outline {
+    background-color: white;
+    color: var(--cmyk-black);
+    border-color: var(--border-line);
+}
+
+.outline:hover {
+    border-color: var(--cmyk-cyan);
+    color: var(--cmyk-cyan);
+}
+
 /* Sizes */
 .sm {
     padding: 0 0.75rem;
